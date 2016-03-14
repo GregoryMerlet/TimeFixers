@@ -19,15 +19,45 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_music"
+        android:textColor="#ffffff"
+        android:id="@+id/textView2"
+        android:layout_alignBottom="@+id/settingsMusicSeekBar"
+        android:layout_alignStart="@+id/settingsMusicSeekBar"
+        android:layout_marginBottom="20dp" />
+
     <SeekBar
         android:layout_width="400dp"
         android:layout_height="wrap_content"
-        android:id="@+id/settingsVolumeSeekBar"
+        android:id="@+id/settingsMusicSeekBar"
+        android:progress="5"
+        android:max="10"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="39dp"
+        android:layout_marginTop="54dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_sound"
+        android:textColor="#ffffff"
+        android:id="@+id/textView3"
+        android:layout_alignBottom="@+id/settingsSoundSeekBar"
+        android:layout_alignStart="@+id/settingsSoundSeekBar"
+        android:layout_marginBottom="20dp" />
+
+    <SeekBar
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/settingsSoundSeekBar"
         android:progress="5"
-        android:max="10"/>
+        android:max="10"
+        android:layout_marginBottom="43dp"
+        android:layout_above="@+id/settingsReturnButton"
+        android:layout_alignStart="@+id/settingsMusicSeekBar" />
 
     <Button
         android:layout_width="wrap_content"

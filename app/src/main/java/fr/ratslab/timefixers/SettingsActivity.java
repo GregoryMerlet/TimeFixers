@@ -21,23 +21,53 @@ public class SettingsActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         Button returnButton = (Button) findViewById(R.id.settingsReturnButton);
-        SeekBar volumeSeekBar = (SeekBar) findViewById(R.id.settingsVolumeSeekBar);
+        SeekBar musicSeekBar = (SeekBar) findViewById(R.id.settingsMusicSeekBar);
+        SeekBar soundSeekBar = (SeekBar) findViewById(R.id.settingsSoundSeekBar);
 
-        volumeSeekBar.setProgress((int)(MenuActivity.VOLUME * 10)); //On récupère la valeur du volume et on ajuste la barre de volume en fonction
+        musicSeekBar.setProgress((int) (GestionnaireSons.getMusicVolume() * 10)); //On récupère la valeur du volume et on ajuste la barre de volume en fonction
+        soundSeekBar.setProgress((int) (GestionnaireSons.getSoundVolume() * 10)); //On récupère la valeur du volume et on ajuste la barre de volume en fonction
 
+        appuiBoutonRetour(returnButton);
+        attendreChangementMusicSeekBar(musicSeekBar);
+        attendreChangementSoundSeekBar(soundSeekBar);
+    }
+
+    public void appuiBoutonRetour(Button returnButton){
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MenuActivity.SOUNDPOOL.play(MenuActivity.SONS.get("clic"), MenuActivity.VOLUME, MenuActivity.VOLUME, 0, 0, 1.0f);
+                GestionnaireSons.jouerSon("clic");
                 finish();
             }
         });
+    }
 
-        volumeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+    public void attendreChangementMusicSeekBar(SeekBar musicSeekBar){
+        musicSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                MenuActivity.VOLUME = (float)progress / 10;
-                MenuActivity.SOUNDPOOL.play(MenuActivity.SONS.get("clic"), MenuActivity.VOLUME, MenuActivity.VOLUME, 0, 0, 1.0f);
+                GestionnaireSons.setMusicVolume((float) progress / 10);
+                GestionnaireSons.jouerSon("clic");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+    }
+
+    public void attendreChangementSoundSeekBar(SeekBar soundSeekBar){
+        soundSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                GestionnaireSons.setSoundVolume((float) progress / 10);
+                GestionnaireSons.jouerSon("clic");
             }
 
             @Override
