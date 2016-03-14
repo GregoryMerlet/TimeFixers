@@ -4,4 +4,5 @@
     <string name="menu_settings_button">Options</string>
     <string name="menu_quit_button">Quitter</string>
     <string name="settings_title">Options</string>
+    <string name="settings_return_button">Retour</string>
 </resources>
