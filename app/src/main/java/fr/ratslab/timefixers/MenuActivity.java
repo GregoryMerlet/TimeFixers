@@ -24,6 +24,7 @@ public class MenuActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         GestionnaireSons.initGestionnaireSons(getApplicationContext());
+        GestionnaireSons.jouerMusique("musique1", true);
 
         Button quitButton = (Button) findViewById(R.id.menuQuitButton);
         Button settingsButton = (Button) findViewById(R.id.menuSettingsButton);
