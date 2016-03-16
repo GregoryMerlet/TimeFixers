@@ -107,4 +107,8 @@ public class GestionnaireSons{
         MEDIAPLAYER.setLooping(loop);
         MEDIAPLAYER.start();
     }
+
+    public static void arreterMusique(){
+        MEDIAPLAYER.stop();
+    }
 }

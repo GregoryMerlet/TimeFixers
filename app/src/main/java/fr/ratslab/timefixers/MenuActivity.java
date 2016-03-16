@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -53,5 +54,15 @@ public class MenuActivity extends AppCompatActivity {
                 MenuActivity.this.startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            finish();
+            System.exit(0); //Si l'utilisateur appui sur la touche de retour, quitter l'application
+            return true;
+        }
+        return false;
     }
 }

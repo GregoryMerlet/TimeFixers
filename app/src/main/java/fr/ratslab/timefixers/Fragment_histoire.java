@@ -69,9 +69,20 @@ public class Fragment_histoire extends Fragment {
     public void verifierTempsChronometre(Chronometer chronometer, final ImageView imageView){
         chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
-            public void onChronometerTick(Chronometer chronometer) {
-                if (Fragment_histoire.this.elapsedTime == 5) {
-                    fragmentSuivant(chronometer, imageView);
+            public void onChronometerTick(final Chronometer chronometer) {
+                if (Fragment_histoire.this.elapsedTime >= 5) {
+                    chronometer.stop();
+
+                    Animation disparitionFondu = AnimationUtils.loadAnimation(Fragment_histoire.this.getActivity(), R.anim.disparition_fondu);
+                    imageView.startAnimation(disparitionFondu);
+                    //Pour attendre la fin de l'animation de disparition
+                    disparitionFondu.setAnimationListener(new Animation.AnimationListener() {
+                        public void onAnimationStart(Animation a) {}
+                        public void onAnimationRepeat(Animation a) {}
+                        public void onAnimationEnd(Animation a) {
+                            fragmentSuivant(chronometer, imageView);
+                        }
+                    });
                 } else {
                     Fragment_histoire.this.elapsedTime++;
                 }
@@ -83,6 +94,7 @@ public class Fragment_histoire extends Fragment {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                chronometer.stop();
                 fragmentSuivant(chronometer, imageView);
             }
         });
@@ -94,23 +106,9 @@ public class Fragment_histoire extends Fragment {
             public void onClick(View v) {
                 chronometer.stop();
 
-                Animation disparitionFondu = AnimationUtils.loadAnimation(Fragment_histoire.this.getActivity(), R.anim.disparition_fondu);
-                imageView.startAnimation(disparitionFondu);
-                //Pour attendre la fin de l'animation de disparition
-                disparitionFondu.setAnimationListener(new Animation.AnimationListener() {
-                    public void onAnimationStart(Animation a) {
-                    }
-
-                    public void onAnimationRepeat(Animation a) {
-                    }
-
-                    public void onAnimationEnd(Animation a) {
-                        Intent intent = new Intent(Fragment_histoire.this.getActivity(), MenuActivity.class);
-                        Fragment_histoire.this.getActivity().startActivity(intent);
-                        Fragment_histoire.this.getActivity().finish();
-                    }
-
-                });
+                Intent intent = new Intent(Fragment_histoire.this.getActivity(), MenuActivity.class);
+                Fragment_histoire.this.getActivity().startActivity(intent);
+                Fragment_histoire.this.getActivity().finish();
             }
         });
     }
@@ -124,25 +122,14 @@ public class Fragment_histoire extends Fragment {
     }
 
     private void fragmentSuivant(Chronometer chronometer, ImageView imageView){
-        chronometer.stop();
-
-        Animation disparitionFondu = AnimationUtils.loadAnimation(Fragment_histoire.this.getActivity(), R.anim.disparition_fondu);
-        imageView.startAnimation(disparitionFondu);
-        //Pour attendre la fin de l'animation de disparition
-        disparitionFondu.setAnimationListener(new Animation.AnimationListener() {
-            public void onAnimationStart(Animation a) {}
-            public void onAnimationRepeat(Animation a) {}
-            public void onAnimationEnd(Animation a) {
-                //Si il ne reste plus d'images pour l'histoire on passe au menu, sinon on passe à l'image suivante
-                if(Fragment_histoire.this.fragmentId == IMAGESHISTOIRE.size()-1){
-                    Intent intent = new Intent(Fragment_histoire.this.getActivity(), MenuActivity.class);
-                    Fragment_histoire.this.getActivity().startActivity(intent);
-                    Fragment_histoire.this.getActivity().finish();
-                } else {
-                    Fragment_histoire.this.getFragmentManager().beginTransaction().replace(R.id.histoire_container, new Fragment_histoire(Fragment_histoire.this.fragmentId)).addToBackStack(null).commit();
-                }
-            }
-
-        });
+        imageView.setVisibility(View.INVISIBLE);
+        //Si il ne reste plus d'images pour l'histoire on passe au menu, sinon on passe à l'image suivante
+        if(Fragment_histoire.this.fragmentId == IMAGESHISTOIRE.size()-1){
+            Intent intent = new Intent(Fragment_histoire.this.getActivity(), MenuActivity.class);
+            Fragment_histoire.this.getActivity().startActivity(intent);
+            Fragment_histoire.this.getActivity().finish();
+        } else {
+            Fragment_histoire.this.getFragmentManager().beginTransaction().replace(R.id.histoire_container, new Fragment_histoire(Fragment_histoire.this.fragmentId)).addToBackStack(null).commit();
+        }
     }
 }
