@@ -25,7 +25,7 @@ public class MenuActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         GestionnaireSons.initGestionnaireSons(getApplicationContext());
-        GestionnaireSons.jouerMusique("musique1", true);
+        GestionnaireSons.jouerMusique(GestionnaireSons.Musique.MUSIQUE1, true);
 
         Button quitButton = (Button) findViewById(R.id.menuQuitButton);
         Button settingsButton = (Button) findViewById(R.id.menuSettingsButton);
@@ -38,7 +38,7 @@ public class MenuActivity extends AppCompatActivity {
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GestionnaireSons.jouerSon("clic");
+                GestionnaireSons.jouerSon(GestionnaireSons.Son.CLIC);
                 finish();
                 System.exit(0);
             }
@@ -49,7 +49,7 @@ public class MenuActivity extends AppCompatActivity {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GestionnaireSons.jouerSon("clic");
+                GestionnaireSons.jouerSon(GestionnaireSons.Son.CLIC);
                 Intent intent = new Intent(MenuActivity.this, SettingsActivity.class);
                 MenuActivity.this.startActivity(intent);
             }

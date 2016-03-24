@@ -21,9 +21,6 @@ public class GestionnaireSons{
     private static MediaPlayer MEDIAPLAYER; //Permet de jouer des musiques
     private static float SOUND_VOLUME; //Le volume du son
     private static float MUSIC_VOLUME; //Le volume de la musique
-    private static HashMap<String, Integer> SONS = new HashMap<>(); //Stock tous les sons en les associants à un nom
-    private static HashMap<String, Integer> MUSIQUES = new HashMap<>(); //Stock toutes les musiques en les associants à un nom
-
 
     /**
      * Initialise le gestionaire de sons.
@@ -33,25 +30,6 @@ public class GestionnaireSons{
         CONTEXT = context;
         SOUND_VOLUME = 0.5f;
         MUSIC_VOLUME = 0.5f;
-        initialiserSons();
-        initialiserMusiques();
-    }
-
-    /**
-     * Associe chaque son à un nom.
-     */
-    private static void initialiserSons(){
-        SONS.put("tresBien", SOUNDPOOL.load(CONTEXT, R.raw.bien, 1));
-        SONS.put("clic", SOUNDPOOL.load(CONTEXT, R.raw.clic, 1));
-    }
-
-    /**
-     * Associe chaque musique à un nom.
-     */
-    private static void initialiserMusiques(){
-        MUSIQUES.put("musique1", R.raw.music1);
-        MUSIQUES.put("musique2", R.raw.music2);
-        MUSIQUES.put("musique3", R.raw.music3);
     }
 
     /**
@@ -89,26 +67,86 @@ public class GestionnaireSons{
 
     /**
      * Joue un son.
-     * @param name   Le nom associé au son à jouer
+     * @param son   Le son à jouer
      */
-    public static void jouerSon(String name){
-        SOUNDPOOL.play(SONS.get(name), SOUND_VOLUME, SOUND_VOLUME, 0, 0, 1.0f);
+    public static void jouerSon(Son son){
+        SOUNDPOOL.play(son.getId(), SOUND_VOLUME, SOUND_VOLUME, 0, 0, 1.0f);
     }
 
     /**
      * Joue une musique.
-     * @param name   Le nom associé à la musique à jouer
+     * @param musique   La musique à jouer
      * @param loop Si la musique doit être joué en boucle
      */
-    public static void jouerMusique(String name, boolean loop){
+    public static void jouerMusique(Musique musique, boolean loop){
         if(MEDIAPLAYER != null)MEDIAPLAYER.stop();
-        MEDIAPLAYER = MediaPlayer.create(CONTEXT, MUSIQUES.get(name));
+        MEDIAPLAYER = MediaPlayer.create(CONTEXT, musique.getId());
         MEDIAPLAYER.setVolume(MUSIC_VOLUME, MUSIC_VOLUME);
         MEDIAPLAYER.setLooping(loop);
         MEDIAPLAYER.start();
     }
 
+    /**
+     * Arrete la musique.
+     */
     public static void arreterMusique(){
         MEDIAPLAYER.stop();
+    }
+
+    //enum associant les sons à un nom
+    public enum Son {
+        TRESBIEN ("tresBien", SOUNDPOOL.load(CONTEXT, R.raw.bien, 1)),
+        CLIC ("clic", SOUNDPOOL.load(CONTEXT, R.raw.clic, 1));
+
+        private String name = "";
+        private int id = 0;
+
+        //Constructeur
+        Son(String name, int id){
+            this.name = name;
+            this.id = id;
+        }
+
+        //Accesseurs
+        public String getName(){
+            return this.name;
+        }
+
+        public int getId(){
+            return this.id;
+        }
+
+        public String toString(){
+            return this.name;
+        }
+    }
+
+    //enum associant les musiques à un nom
+    public enum Musique {
+        MUSIQUE1 ("musique1", R.raw.music1),
+        MUSIQUE2 ("musique2", R.raw.music2),
+        MUSIQUE3 ("musique3", R.raw.music3);
+
+        private String name = "";
+        private int id = 0;
+
+        //Constructeur
+        Musique(String name, int id){
+            this.name = name;
+            this.id = id;
+        }
+
+        //Accesseurs
+        public String getName(){
+            return this.name;
+        }
+
+        public int getId(){
+            return this.id;
+        }
+
+        public String toString(){
+            return this.name;
+        }
     }
 }

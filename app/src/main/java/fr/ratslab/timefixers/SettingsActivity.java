@@ -36,7 +36,7 @@ public class SettingsActivity extends AppCompatActivity {
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GestionnaireSons.jouerSon("clic");
+                GestionnaireSons.jouerSon(GestionnaireSons.Son.CLIC);
                 finish();
             }
         });
@@ -47,7 +47,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 GestionnaireSons.setMusicVolume((float) progress / 10);
-                GestionnaireSons.jouerSon("clic");
+                GestionnaireSons.jouerSon(GestionnaireSons.Son.CLIC);
             }
 
             @Override
@@ -67,7 +67,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 GestionnaireSons.setSoundVolume((float) progress / 10);
-                GestionnaireSons.jouerSon("clic");
+                GestionnaireSons.jouerSon(GestionnaireSons.Son.CLIC);
             }
 
             @Override
