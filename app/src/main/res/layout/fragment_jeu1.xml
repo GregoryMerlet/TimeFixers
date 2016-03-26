@@ -5,22 +5,14 @@
     android:background="@drawable/menu_background"
     tools:context=".Jeu1Activity$PlaceholderFragment">
 
-    <Chronometer
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/jeu1FragmentChronometer"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:textColor="#ffffff" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Emplacement de question"
         android:id="@+id/jeu1Question"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="66dp"
         style="@style/jeu1Question"
-        android:layout_below="@+id/jeu1FragmentChronometer"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -30,9 +22,9 @@
         android:id="@+id/jeu1Reponse2"
         android:height="125dp"
         android:width="125dp"
+        android:layout_marginTop="60dp"
         android:layout_below="@+id/jeu1Question"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="66dp" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -62,8 +54,31 @@
         android:text="Question 0 sur 20"
         android:id="@+id/jeu1AvanceTextView"
         style="@style/jeu1Text"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginBottom="30dp"
+        android:layout_alignBottom="@+id/jeu1Question"
+        android:layout_alignEnd="@+id/jeu1Reponse2" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/jeu1TimeProgressBar"
+        android:layout_marginRight="5dp"
+        android:max="300"
+        android:progress="0"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/jeu_1_timer"
+        android:id="@+id/textView4"
+        android:layout_alignBottom="@+id/jeu1TimeProgressBar"
+        android:layout_marginBottom="15dp"
+        android:layout_centerHorizontal="true"
+        style="@style/jeu1Text"/>
 
 </RelativeLayout>

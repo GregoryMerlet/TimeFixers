@@ -10,6 +10,7 @@
     <string name="histoire_fragment_skip_button">Passer</string>
     <string name="jeu_1_avance_1">Question</string>
     <string name="jeu_1_avance_2">sur</string>
+    <string name="jeu_1_timer">Temps restant</string>
     <string name="result_title">Résultats</string>
     <string name="result_score">Score :</string>
     <string name="result_retour">Retour au menu</string>

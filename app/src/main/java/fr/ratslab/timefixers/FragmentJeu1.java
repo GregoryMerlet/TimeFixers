@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.util.Xml;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -35,18 +37,34 @@ public class FragmentJeu1 extends Fragment {
 
     private View rootView;
     private int questionId;
-    private int elapsedTime;
+    private CountDownTimer timer;
 
     public FragmentJeu1() {
         QUESTIONS  = new ArrayList<QuestionJeu1>();
 
         this.questionId = 0;
-        this.elapsedTime = 0;
+        this.timer = new CountDownTimer(30000, 100) {
+            public void onTick(long millisUntilFinished) {
+                ProgressBar timeBar = (ProgressBar)FragmentJeu1.this.rootView.findViewById(R.id.jeu1TimeProgressBar);
+                timeBar.setProgress(timeBar.getProgress()+1);
+            }
+            public void onFinish() {
+                questionSuivante(null);
+            }
+        };
     }
 
     public FragmentJeu1(int previousQuestionId) {
         this.questionId = previousQuestionId + 1;
-        this.elapsedTime = 0;
+        this.timer = new CountDownTimer(30000, 100) {
+            public void onTick(long millisUntilFinished) {
+                ProgressBar timeBar = (ProgressBar)FragmentJeu1.this.rootView.findViewById(R.id.jeu1TimeProgressBar);
+                timeBar.setProgress(timeBar.getProgress()+1);
+            }
+            public void onFinish() {
+                questionSuivante(null);
+            }
+        };
     }
 
     @Override
@@ -55,48 +73,34 @@ public class FragmentJeu1 extends Fragment {
         this.rootView = inflater.inflate(R.layout.fragment_jeu1, container, false);
 
         if(QUESTIONS.size() == 0)recupererQuestions();
-        else initialiserTextes();
+        else {
+            initialiserTextes();
+            timer.start(); //On démarre le chronomètre
+        }
 
-        Chronometer chronometer = (Chronometer) this.rootView.findViewById(R.id.jeu1FragmentChronometer);
         Button reponse1 = (Button) this.rootView.findViewById(R.id.jeu1Reponse1);
         Button reponse2 = (Button) this.rootView.findViewById(R.id.jeu1Reponse2);
         Button reponse3 = (Button) this.rootView.findViewById(R.id.jeu1Reponse3);
 
-        chronometer.start(); //On démarre le chronomètre
-
-        appuiBouton(reponse1, chronometer);
-        appuiBouton(reponse2, chronometer);
-        appuiBouton(reponse3, chronometer);
-        verifierTempsChronometre(chronometer);
+        appuiBouton(reponse1);
+        appuiBouton(reponse2);
+        appuiBouton(reponse3);
 
         return this.rootView;
     }
 
-    public void verifierTempsChronometre(Chronometer chronometer){
-        chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
-            @Override
-            public void onChronometerTick(final Chronometer chronometer) {
-                if (FragmentJeu1.this.elapsedTime >= 30) {
-                    questionSuivante(null, chronometer);
-                } else {
-                    FragmentJeu1.this.elapsedTime++;
-                }
-            }
-        });
-    }
-
-    public void appuiBouton(final Button reponse, final Chronometer chronometer){
+    public void appuiBouton(final Button reponse){
         reponse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 GestionnaireSons.jouerSon(GestionnaireSons.Son.CLIC);
-                questionSuivante(reponse.getText().toString(), chronometer);
+                questionSuivante(reponse.getText().toString());
             }
         });
     }
 
-    public void questionSuivante(String response, Chronometer chronometer){
-        chronometer.stop();
+    public void questionSuivante(String response){
+        timer.cancel();
 
         REPONSES.add(response);
 
@@ -166,6 +170,8 @@ public class FragmentJeu1 extends Fragment {
                     Collections.shuffle(QUESTIONS); //On mélange les questions
 
                     initialiserTextes(); //On place les textes
+
+                    timer.start(); //On démarre le chronomètre
 
                 } catch (XmlPullParserException e) {
                     e.printStackTrace();
