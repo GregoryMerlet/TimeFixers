@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TimeFixers</string>
+    <string name="app_name" translatable="false">TimeFixers</string>
     <string name="menu_play_button">Jouer</string>
     <string name="menu_settings_button">Options</string>
     <string name="menu_quit_button">Quitter</string>
@@ -8,4 +8,9 @@
     <string name="settings_sound">Sons</string>
     <string name="settings_return_button">Retour</string>
     <string name="histoire_fragment_skip_button">Passer</string>
+    <string name="jeu_1_avance_1">Question</string>
+    <string name="jeu_1_avance_2">sur</string>
+    <string name="result_title">Résultats</string>
+    <string name="result_score">Score :</string>
+    <string name="result_retour">Retour au menu</string>
 </resources>

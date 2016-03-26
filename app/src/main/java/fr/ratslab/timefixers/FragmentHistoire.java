@@ -2,26 +2,19 @@ package fr.ratslab.timefixers;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v4.app.Fragment;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Chronometer;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Map;
 
-public class Fragment_histoire extends Fragment {
+public class FragmentHistoire extends Fragment {
 
     static ArrayList<Integer> IMAGESHISTOIRE = new ArrayList<Integer>();
 
@@ -29,7 +22,7 @@ public class Fragment_histoire extends Fragment {
     private int fragmentId;
     private int elapsedTime;
 
-    public Fragment_histoire() {
+    public FragmentHistoire() {
         initialiserImages();
 
         this.fragmentId = 0;
@@ -37,7 +30,7 @@ public class Fragment_histoire extends Fragment {
         this.elapsedTime = 0;
     }
 
-    public Fragment_histoire(int previousFragmentId) {
+    public FragmentHistoire(int previousFragmentId) {
         initialiserImages();
 
         this.fragmentId = previousFragmentId + 1;
@@ -56,7 +49,7 @@ public class Fragment_histoire extends Fragment {
         chronometer.start(); //On démarre le chronomètre
 
         imageView.setImageResource(this.imageId);
-        Animation apparitionFondu = AnimationUtils.loadAnimation(Fragment_histoire.this.getActivity(), R.anim.apparition_fondu);
+        Animation apparitionFondu = AnimationUtils.loadAnimation(FragmentHistoire.this.getActivity(), R.anim.apparition_fondu);
         imageView.startAnimation(apparitionFondu);
 
         appuiBoutonPasser(skipButton, chronometer, imageView);
@@ -70,10 +63,10 @@ public class Fragment_histoire extends Fragment {
         chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(final Chronometer chronometer) {
-                if (Fragment_histoire.this.elapsedTime >= 5) {
+                if (FragmentHistoire.this.elapsedTime >= 5) {
                     chronometer.stop();
 
-                    Animation disparitionFondu = AnimationUtils.loadAnimation(Fragment_histoire.this.getActivity(), R.anim.disparition_fondu);
+                    Animation disparitionFondu = AnimationUtils.loadAnimation(FragmentHistoire.this.getActivity(), R.anim.disparition_fondu);
                     imageView.startAnimation(disparitionFondu);
                     //Pour attendre la fin de l'animation de disparition
                     disparitionFondu.setAnimationListener(new Animation.AnimationListener() {
@@ -84,7 +77,7 @@ public class Fragment_histoire extends Fragment {
                         }
                     });
                 } else {
-                    Fragment_histoire.this.elapsedTime++;
+                    FragmentHistoire.this.elapsedTime++;
                 }
             }
         });
@@ -106,9 +99,9 @@ public class Fragment_histoire extends Fragment {
             public void onClick(View v) {
                 chronometer.stop();
 
-                Intent intent = new Intent(Fragment_histoire.this.getActivity(), MenuActivity.class);
-                Fragment_histoire.this.getActivity().startActivity(intent);
-                Fragment_histoire.this.getActivity().finish();
+                Intent intent = new Intent(FragmentHistoire.this.getActivity(), MenuActivity.class);
+                FragmentHistoire.this.getActivity().startActivity(intent);
+                FragmentHistoire.this.getActivity().finish();
             }
         });
     }
@@ -124,12 +117,12 @@ public class Fragment_histoire extends Fragment {
     private void fragmentSuivant(Chronometer chronometer, ImageView imageView){
         imageView.setVisibility(View.INVISIBLE);
         //Si il ne reste plus d'images pour l'histoire on passe au menu, sinon on passe à l'image suivante
-        if(Fragment_histoire.this.fragmentId == IMAGESHISTOIRE.size()-1){
-            Intent intent = new Intent(Fragment_histoire.this.getActivity(), MenuActivity.class);
-            Fragment_histoire.this.getActivity().startActivity(intent);
-            Fragment_histoire.this.getActivity().finish();
+        if(FragmentHistoire.this.fragmentId == IMAGESHISTOIRE.size()-1){
+            Intent intent = new Intent(FragmentHistoire.this.getActivity(), MenuActivity.class);
+            FragmentHistoire.this.getActivity().startActivity(intent);
+            FragmentHistoire.this.getActivity().finish();
         } else {
-            Fragment_histoire.this.getFragmentManager().beginTransaction().replace(R.id.histoire_container, new Fragment_histoire(Fragment_histoire.this.fragmentId)).addToBackStack(null).commit();
+            FragmentHistoire.this.getFragmentManager().beginTransaction().replace(R.id.histoire_container, new FragmentHistoire(FragmentHistoire.this.fragmentId)).addToBackStack(null).commit();
         }
     }
 }

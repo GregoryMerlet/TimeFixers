@@ -1,5 +1,7 @@
 package fr.ratslab.timefixers;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -29,9 +31,11 @@ public class MenuActivity extends AppCompatActivity {
 
         Button quitButton = (Button) findViewById(R.id.menuQuitButton);
         Button settingsButton = (Button) findViewById(R.id.menuSettingsButton);
+        Button playButton = (Button) findViewById(R.id.menuPlayButton);
 
         appuiBoutonQuitter(quitButton);
         appuiBoutonOptions(settingsButton);
+        appuiBoutonJouer(playButton);
     }
 
     private void appuiBoutonQuitter(Button quitButton){
@@ -56,11 +60,33 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
+    private void appuiBoutonJouer(Button playButton){
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GestionnaireSons.jouerSon(GestionnaireSons.Son.CLIC);
+                Intent intent = new Intent(MenuActivity.this, Jeu1Activity.class);
+                MenuActivity.this.startActivity(intent);
+            }
+        });
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            finish();
-            System.exit(0); //Si l'utilisateur appui sur la touche de retour, quitter l'application
+        if (keyCode == KeyEvent.KEYCODE_BACK){ //Si l'utilisateur appui sur la touche de retour, lui demander confirmation avant de quitter l'application
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Quitter");
+
+            builder.setMessage("Voulez vous vraiment quitter le jeu ?");
+            builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                    System.exit(0);
+                }
+            });
+            builder.setNegativeButton("Non", null);
+            builder.show();
             return true;
         }
         return false;

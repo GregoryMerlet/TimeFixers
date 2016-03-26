@@ -21,4 +21,31 @@
     <style name="settingsText">
         <item name="android:textColor">#ffffff</item>
     </style>
+
+    <style name="jeu1Question">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">10pt</item>
+    </style>
+
+    <style name="jeu1Text">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">8pt</item>
+    </style>
+
+    <style name="resultTitle">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">20pt</item>
+    </style>
+
+    <style name="resultText">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">8pt</item>
+    </style>
+
+    <style name="resultListText">
+        <item name="android:textColor">#ffffff</item>
+    </style>
+    <style name="resultListView">
+        <item name="android:background">#82555555</item>
+    </style>
 </resources>

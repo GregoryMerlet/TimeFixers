@@ -1,18 +1,9 @@
 package fr.ratslab.timefixers;
 
-import android.content.Intent;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-
-import java.util.HashMap;
 
 public class HistoireActivity extends AppCompatActivity {
 
@@ -24,10 +15,12 @@ public class HistoireActivity extends AppCompatActivity {
         //On cache la barre de status pour obtenir un affichage plein écran
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        //On initialise le gestionnaire de sons
         GestionnaireSons.initGestionnaireSons(getApplicationContext());
 
+        //On lance le premier fragment
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().add(R.id.histoire_container, new Fragment_histoire()).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.histoire_container, new FragmentHistoire()).commit();
         }
     }
 
