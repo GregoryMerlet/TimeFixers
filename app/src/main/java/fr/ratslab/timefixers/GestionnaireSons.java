@@ -1,6 +1,7 @@
 package fr.ratslab.timefixers;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 
 public class GestionnaireSons{
 
+    private static SharedPreferences SHAREDPREFERENCES;
     private static Context CONTEXT; //Le contexte de l'application
     private static SoundPool SOUNDPOOL = new SoundPool(1, AudioManager.STREAM_MUSIC, 0); //Permet de jouer des sons
     private static MediaPlayer MEDIAPLAYER; //Permet de jouer des musiques
@@ -28,8 +30,9 @@ public class GestionnaireSons{
      */
     public static void initGestionnaireSons(Context context){
         CONTEXT = context;
-        SOUND_VOLUME = 0.5f;
-        MUSIC_VOLUME = 0.5f;
+        SHAREDPREFERENCES = CONTEXT.getSharedPreferences("settings_shared_preferences", Context.MODE_PRIVATE); //On récupère le fichier des préférences, si il n'existe pas, on le créé
+        SOUND_VOLUME = SHAREDPREFERENCES.getFloat("sound", 0.5F); //On récupère la valeur dans le fichier des préférences, si elle n'y est pas, on lui donne 0.5f pour valeur
+        MUSIC_VOLUME = SHAREDPREFERENCES.getFloat("music", 0.5F); //On récupère la valeur dans le fichier des préférences, si elle n'y est pas, on lui donne 0.5f pour valeur
     }
 
     /**
@@ -38,6 +41,11 @@ public class GestionnaireSons{
      */
     public static void setSoundVolume(float valeur){
         SOUND_VOLUME = valeur;
+
+        //On stock la nouvelle valeur dans le fichier des préférences
+        SharedPreferences.Editor editor = SHAREDPREFERENCES.edit();
+        editor.putFloat("sound", valeur);
+        editor.commit();
     }
 
     /**
@@ -55,6 +63,11 @@ public class GestionnaireSons{
     public static void setMusicVolume(float valeur){
         MUSIC_VOLUME = valeur;
         MEDIAPLAYER.setVolume(MUSIC_VOLUME, MUSIC_VOLUME);
+
+        //On stock la nouvelle valeur dans le fichier des préférences
+        SharedPreferences.Editor editor = SHAREDPREFERENCES.edit();
+        editor.putFloat("music", valeur);
+        editor.commit();
     }
 
     /**

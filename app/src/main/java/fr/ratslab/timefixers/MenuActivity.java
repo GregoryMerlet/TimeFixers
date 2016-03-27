@@ -26,7 +26,6 @@ public class MenuActivity extends AppCompatActivity {
         //On cache la barre de status pour obtenir un affichage plein écran
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        GestionnaireSons.initGestionnaireSons(getApplicationContext());
         GestionnaireSons.jouerMusique(GestionnaireSons.Musique.MUSIQUE1, true);
 
         Button quitButton = (Button) findViewById(R.id.menuQuitButton);
