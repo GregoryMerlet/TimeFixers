@@ -25,6 +25,7 @@
     <style name="jeu1Question">
         <item name="android:textColor">#ffffff</item>
         <item name="android:textSize">10pt</item>
+        <item name="android:textAlignment">center</item>
     </style>
 
     <style name="jeu1Text">

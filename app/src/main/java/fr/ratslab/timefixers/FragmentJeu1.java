@@ -33,14 +33,15 @@ import java.util.Collections;
 public class FragmentJeu1 extends Fragment {
 
     static ArrayList<QuestionJeu1> QUESTIONS;
-    static ArrayList<String> REPONSES = new ArrayList<String>();
+    static ArrayList<String> REPONSES;
 
     private View rootView;
     private int questionId;
     private CountDownTimer timer;
 
     public FragmentJeu1() {
-        QUESTIONS  = new ArrayList<QuestionJeu1>();
+        QUESTIONS = new ArrayList<QuestionJeu1>();
+        REPONSES = new ArrayList<String>();
 
         this.questionId = 0;
         this.timer = new CountDownTimer(30000, 100) {
