@@ -1,5 +1,6 @@
 package fr.ratslab.timefixers;
 
+import android.app.Fragment;
 import android.widget.*;
 import java.util.*;
 import android.content.*;
@@ -58,7 +59,7 @@ public class QuestionnaireAdapter extends BaseAdapter {
         //(3) : Renseignement des valeurs
         question.setText(this.questionnaire.get(position).getQuestion());
         goodResponse.setText(this.questionnaire.get(position).getReponseV());
-        response.setText(this.reponses.get(position));
+        response.setText((this.reponses.get(position) == null) ? this.context.getString(R.string.result_empty) : this.reponses.get(position));
 
         //(4) Changement de la couleur du fond de notre item
         if (this.questionnaire.get(position).getReponseV().equals(this.reponses.get(position))) {
