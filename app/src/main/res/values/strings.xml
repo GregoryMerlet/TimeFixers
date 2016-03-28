@@ -19,5 +19,6 @@
     <string name="selection_retour">Retour</string>
     <string name="selection_description1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</string>
     <string name="selection_description2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</string>
+    <string name="consigneJeu2">Glissez l\'objet dans la bonne date.</string>
 
 </resources>

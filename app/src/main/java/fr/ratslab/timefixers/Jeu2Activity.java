@@ -11,18 +11,20 @@ import android.view.WindowManager;
  * Created by sebastientosello on 28/03/16.
  */
 public class Jeu2Activity extends AppCompatActivity {
+    public static FragmentJeu2 fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_jeu1);
+        setContentView(R.layout.activity_jeu2);
 
         //On cache la barre de status pour obtenir un affichage plein écran
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         //On lance le premier fragment
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().add(R.id.jeu1_container, new FragmentJeu1()).commit();
+            fragment = new FragmentJeu2();
+            getSupportFragmentManager().beginTransaction().add(R.id.jeu2_container, fragment).commit();
         }
     }
 
