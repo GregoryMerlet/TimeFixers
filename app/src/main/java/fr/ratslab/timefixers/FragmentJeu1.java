@@ -113,7 +113,9 @@ public class FragmentJeu1 extends Fragment {
             FragmentJeu1.this.getActivity().startActivity(intent);
             FragmentJeu1.this.getActivity().finish();
         } else {
-            FragmentJeu1.this.getFragmentManager().beginTransaction().replace(R.id.jeu1_container, new FragmentJeu1(FragmentJeu1.this.questionId)).addToBackStack(null).commit();
+            FragmentJeu1 newFragment = new FragmentJeu1(FragmentJeu1.this.questionId);
+            Jeu1Activity.fragment = newFragment;
+            FragmentJeu1.this.getFragmentManager().beginTransaction().replace(R.id.jeu1_container, newFragment).addToBackStack(null).commit();
         }
     }
 
@@ -124,7 +126,7 @@ public class FragmentJeu1 extends Fragment {
         Button reponse3 = (Button) FragmentJeu1.this.rootView.findViewById(R.id.jeu1Reponse3);
         TextView avance = (TextView) this.rootView.findViewById(R.id.jeu1AvanceTextView);
 
-        avance.setText(getString(R.string.jeu_1_avance_1) + " " + (this.questionId+1) + " " + getString(R.string.jeu_1_avance_2) + " " + QUESTIONS.size());
+        avance.setText(getString(R.string.jeu_1_avance_1) + " " + (this.questionId + 1) + " " + getString(R.string.jeu_1_avance_2) + " " + QUESTIONS.size());
         question.setText(QUESTIONS.get(FragmentJeu1.this.questionId).getQuestion()); //On place le texte sur la question
         placerReponseAleatoirement(new Button[]{reponse1, reponse2, reponse3}); //On réparti les réponses aléatoirement
     }
@@ -208,5 +210,9 @@ public class FragmentJeu1 extends Fragment {
         parser.require(XmlPullParser.END_TAG, null, "quizz");
         parser.next();
         parser.require(XmlPullParser.END_DOCUMENT, null, null);
+    }
+
+    public void stopTimer(){
+        this.timer.cancel();
     }
 }

@@ -18,6 +18,8 @@ import java.util.HashMap;
 
 public class Jeu1Activity extends AppCompatActivity {
 
+    public static FragmentJeu1 fragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +30,8 @@ public class Jeu1Activity extends AppCompatActivity {
 
         //On lance le premier fragment
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().add(R.id.jeu1_container, new FragmentJeu1()).commit();
+            fragment = new FragmentJeu1();
+            getSupportFragmentManager().beginTransaction().add(R.id.jeu1_container, fragment).commit();
         }
     }
 
@@ -42,6 +45,7 @@ public class Jeu1Activity extends AppCompatActivity {
             builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+                    fragment.stopTimer();
                     finish();
                 }
             });
