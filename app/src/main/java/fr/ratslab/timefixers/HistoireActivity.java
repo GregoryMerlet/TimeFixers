@@ -15,9 +15,6 @@ public class HistoireActivity extends AppCompatActivity {
         //On cache la barre de status pour obtenir un affichage plein écran
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        //On initialise le gestionnaire de sons
-        GestionnaireSons.initGestionnaireSons(getApplicationContext());
-
         //On lance le premier fragment
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().add(R.id.histoire_container, new FragmentHistoire()).commit();

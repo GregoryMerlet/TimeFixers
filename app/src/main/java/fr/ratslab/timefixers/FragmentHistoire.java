@@ -114,6 +114,7 @@ public class FragmentHistoire extends Fragment {
 
     private void initialiserImages(){
         if(IMAGESHISTOIRE.size() == 0){
+            IMAGESHISTOIRE.add(R.drawable.ratslab);
             IMAGESHISTOIRE.add(R.drawable.histoire_1);
             IMAGESHISTOIRE.add(R.drawable.histoire_2);
             IMAGESHISTOIRE.add(R.drawable.histoire_3);
