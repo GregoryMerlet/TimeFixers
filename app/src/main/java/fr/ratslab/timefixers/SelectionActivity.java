@@ -48,6 +48,7 @@ public class SelectionActivity extends AppCompatActivity {
                 GestionnaireSons.jouerSon(GestionnaireSons.Son.CLIC);
                 Intent intent = new Intent(SelectionActivity.this, Jeu1Activity.class);
                 SelectionActivity.this.startActivity(intent);
+                finish();
             }
         });
     }
@@ -59,6 +60,7 @@ public class SelectionActivity extends AppCompatActivity {
                 GestionnaireSons.jouerSon(GestionnaireSons.Son.CLIC);
                 Intent intent = new Intent(SelectionActivity.this, Jeu2Activity.class);
                 SelectionActivity.this.startActivity(intent);
+                finish();
             }
         });
     }
