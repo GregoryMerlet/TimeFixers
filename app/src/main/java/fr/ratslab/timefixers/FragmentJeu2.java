@@ -44,6 +44,8 @@ public class FragmentJeu2 extends Fragment {
     static ArrayList<QuestionJeu2> QUESTIONS;
     static ArrayList<String> REPONSES;
 
+    int idImage;
+
     private View rootView;
     private int questionId;
     private CountDownTimer timer;
@@ -105,6 +107,7 @@ public class FragmentJeu2 extends Fragment {
                     ImageView obj = (ImageView) v;
 
                     View.DragShadowBuilder myShadowBuilder = new MyShadowBuilder(v);
+                    myShadowBuilder.getView().setAlpha(1);
 
                     ClipData data = ClipData.newPlainText("", "");
                     v.startDrag(data, myShadowBuilder, obj, 0);
@@ -128,13 +131,11 @@ public class FragmentJeu2 extends Fragment {
     public void appuiBouton(final Button reponse){
         reponse.setOnDragListener(new View.OnDragListener() {
             @Override
-            public boolean onDrag(View v, DragEvent event)
-            {
+            public boolean onDrag(View v, DragEvent event) {
                 int dragEvent = event.getAction();
                 TextView dropText = (TextView) v;
 
-                switch(dragEvent)
-                {
+                switch (dragEvent) {
                     case DragEvent.ACTION_DRAG_ENTERED:
                         //dropText.setTextColor(Color.GREEN);
                         break;
@@ -162,7 +163,7 @@ public class FragmentJeu2 extends Fragment {
 
         //Si il ne reste plus de questions on passe aux résultats, sinon on passe à la question suivante
         if (FragmentJeu2.this.questionId == QUESTIONS.size() - 1) {
-            Intent intent = new Intent(FragmentJeu2.this.getActivity(), ResultActivity.class);
+            Intent intent = new Intent(FragmentJeu2.this.getActivity(), ResultActivity2.class);
             intent.putParcelableArrayListExtra("questionnaire", QUESTIONS);
             intent.putStringArrayListExtra("reponses", REPONSES);
             FragmentJeu2.this.getActivity().startActivity(intent);
@@ -175,17 +176,20 @@ public class FragmentJeu2 extends Fragment {
     }
 
     public void initialiserTextes(){
-        ImageView question = (ImageView) FragmentJeu2.this.rootView.findViewById(R.id.objet);
+        ImageView objet = (ImageView) FragmentJeu2.this.rootView.findViewById(R.id.objet);
         Button reponse1 = (Button) FragmentJeu2.this.rootView.findViewById(R.id.jeu2Reponse1);
         Button reponse2 = (Button) FragmentJeu2.this.rootView.findViewById(R.id.jeu2Reponse2);
         Button reponse3 = (Button) FragmentJeu2.this.rootView.findViewById(R.id.jeu2Reponse3);
         TextView avance = (TextView) this.rootView.findViewById(R.id.jeu2AvanceTextView);
 
-        //avance.setText(getString(R.string.jeu_2_avance_1) + " " + (this.questionId + 1) + " " + getString(R.string.jeu_1_avance_2) + " " + QUESTIONS.size());
-        //question.setText(QUESTIONS.get(FragmentJeu2.this.questionId).getQuestion()); //On place le texte sur la question
-        question.setImageResource(R.drawable.objet);
+        avance.setText(getString(R.string.jeu_2_avance_1) + " " + (this.questionId + 1) + " " + getString(R.string.jeu_2_avance_2) + " " + QUESTIONS.size());
+
+        idImage = FragmentJeu2.this.rootView.getResources().getIdentifier(QUESTIONS.get(FragmentJeu2.this.questionId).getQuestion(), "drawable", getActivity().getPackageName());
+        //Toast.makeText(getActivity(), QUESTIONS.get(FragmentJeu2.this.questionId).getQuestion() + id,Toast.LENGTH_LONG).show();
+        objet.setImageResource(idImage);
         placerReponseAleatoirement(new Button[]{reponse1, reponse2, reponse3}); //On réparti les réponses aléatoirement
     }
+
 
     public void placerReponseAleatoirement(Button[] reponses){
         int aleatoire;
@@ -279,7 +283,7 @@ public class FragmentJeu2 extends Fragment {
         public MyShadowBuilder(View v)
         {
             super(v);
-            shadow = new ColorDrawable(Color.LTGRAY);
+            shadow = getResources().getDrawable(idImage);
         }
 
         @Override
@@ -291,14 +295,15 @@ public class FragmentJeu2 extends Fragment {
         @Override
         public void onProvideShadowMetrics(Point shadowSize, Point shadowTouchPoint)
         {
-            int height, width;
-            height = 100;
-            width = 100;
 
-            shadow.setBounds(0, 0, width, height);
+            int height, width;
+            height = 300;
+            width = 300;
+
+            shadow.setBounds(0,0, width, height);
 
             shadowSize.set(width, height);
-            shadowTouchPoint.set(width/2, height/2);
+            shadowTouchPoint.set(150, 150);
         }
 
     }

@@ -21,5 +21,7 @@
     <string name="selection_description2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</string>
     <string name="selection_titre_1">Le Quizz du Professeur</string>
     <string name="consigneJeu2">Glissez l\'objet dans la bonne date.</string>
+    <string name="jeu_2_avance_1">Question</string>
+    <string name="jeu_2_avance_2">sur</string>
 
 </resources>
