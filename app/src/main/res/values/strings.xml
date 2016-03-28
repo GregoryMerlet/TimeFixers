@@ -15,4 +15,9 @@
     <string name="result_score">Score :</string>
     <string name="result_retour">Retour au menu</string>
     <string name="result_empty">Sans réponse</string>
+    <string name="selection_title">Choisissez un jeu</string>
+    <string name="selection_retour">Retour</string>
+    <string name="selection_description1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</string>
+    <string name="selection_description2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</string>
+
 </resources>

@@ -49,4 +49,11 @@
     <style name="resultListView">
         <item name="android:background">#82555555</item>
     </style>
+    <style name="selectionTitle">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">20pt</item>
+    </style>
+    <style name="selectionDescription">
+        <item name="android:textColor">#80ffffff</item>
+    </style>
 </resources>

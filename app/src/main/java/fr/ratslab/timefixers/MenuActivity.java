@@ -64,7 +64,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 GestionnaireSons.jouerSon(GestionnaireSons.Son.CLIC);
-                Intent intent = new Intent(MenuActivity.this, Jeu1Activity.class);
+                Intent intent = new Intent(MenuActivity.this, SelectionActivity.class);
                 MenuActivity.this.startActivity(intent);
             }
         });
