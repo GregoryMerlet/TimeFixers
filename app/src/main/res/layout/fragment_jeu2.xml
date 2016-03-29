@@ -14,7 +14,9 @@
         android:height="125dp"
         android:width="125dp"
         android:layout_above="@+id/textView4"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/portal"
+        android:textColor="#ffffff"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -24,7 +26,9 @@
         android:height="125dp"
         android:width="125dp"
         android:layout_alignBottom="@+id/textView4"
-        android:layout_alignStart="@+id/jeu2TimeProgressBar" />
+        android:layout_alignStart="@+id/jeu2TimeProgressBar"
+        android:background="@drawable/portal"
+        android:textColor="#ffffff"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -34,7 +38,9 @@
         android:height="125dp"
         android:width="125dp"
         android:layout_alignBottom="@+id/textView4"
-        android:layout_alignEnd="@+id/jeu2TimeProgressBar" />
+        android:layout_alignEnd="@+id/jeu2TimeProgressBar"
+        android:background="@drawable/portal"
+        android:textColor="#ffffff"/>
 
     <TextView
         android:layout_width="wrap_content"
