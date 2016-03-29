@@ -8,11 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="menuButton">
-        <item name="android:background">@drawable/button_custom</item>
-        <item name="android:textColor">#ffffff</item>
-    </style>
-
     <style name="settingsTitle">
         <item name="android:textColor">#ffffff</item>
         <item name="android:textSize">20pt</item>

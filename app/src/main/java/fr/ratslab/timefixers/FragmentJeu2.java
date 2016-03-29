@@ -94,7 +94,7 @@ public class FragmentJeu2 extends Fragment {
         Button reponse2 = (Button) this.rootView.findViewById(R.id.jeu2Reponse2);
         Button reponse3 = (Button) this.rootView.findViewById(R.id.jeu2Reponse3);
 
-        ImageView objet = (ImageView) this.rootView.findViewById(R.id.objet);
+        ImageView objet = (ImageView) this.rootView.findViewById(R.id.jeu2Objet);
         objet.setLongClickable(true);
         objet.setClickable(true);
 
@@ -176,7 +176,7 @@ public class FragmentJeu2 extends Fragment {
     }
 
     public void initialiserTextes(){
-        ImageView objet = (ImageView) FragmentJeu2.this.rootView.findViewById(R.id.objet);
+        ImageView objet = (ImageView) FragmentJeu2.this.rootView.findViewById(R.id.jeu2Objet);
         Button reponse1 = (Button) FragmentJeu2.this.rootView.findViewById(R.id.jeu2Reponse1);
         Button reponse2 = (Button) FragmentJeu2.this.rootView.findViewById(R.id.jeu2Reponse2);
         Button reponse3 = (Button) FragmentJeu2.this.rootView.findViewById(R.id.jeu2Reponse3);
@@ -283,6 +283,8 @@ public class FragmentJeu2 extends Fragment {
         public MyShadowBuilder(View v)
         {
             super(v);
+            ImageView image = (ImageView) rootView.findViewById(R.id.jeu2Objet);
+            image.setVisibility(View.INVISIBLE);
             shadow = getResources().getDrawable(idImage);
         }
 

@@ -83,7 +83,7 @@
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:id="@+id/objet"
+        android:id="@+id/jeu2Objet"
         android:src="@drawable/objet"
         android:layout_below="@+id/jeu2AvanceTextView"
         android:layout_centerHorizontal="true"

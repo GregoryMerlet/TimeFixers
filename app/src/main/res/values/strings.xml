@@ -18,10 +18,10 @@
     <string name="selection_title">Choisissez un jeu</string>
     <string name="selection_retour">Retour</string>
     <string name="selection_description1">Choisis la bonne réponse à la question du professeur.</string>
-    <string name="selection_description2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</string>
+    <string name="selection_description2">Fais glisser les objets ou personnages dans leurs periodes respectives.</string>
     <string name="selection_titre_1">Le Quizz du Professeur</string>
+    <string name="selection_titre_2">Le jeu des anachronismes</string>
     <string name="consigneJeu2">Glissez l\'objet dans la bonne date.</string>
     <string name="jeu_2_avance_1">Question</string>
     <string name="jeu_2_avance_2">sur</string>
-
 </resources>
