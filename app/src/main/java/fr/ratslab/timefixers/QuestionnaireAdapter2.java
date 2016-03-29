@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -50,18 +51,19 @@ public class QuestionnaireAdapter2 extends BaseAdapter {
         //(1) : Réutilisation des layouts
         if (convertView == null) {
             //Initialisation de notre item à partir du  layout XML "item_list_view.xml"
-            layoutItem = (RelativeLayout) layoutInflater.inflate(R.layout.item_result_list_view, parent, false);
+            layoutItem = (RelativeLayout) layoutInflater.inflate(R.layout.item_result_2_list_view, parent, false);
         } else {
             layoutItem = (RelativeLayout) convertView;
         }
 
         //(2) : Récupération des TextView de notre layout
-        TextView question = (TextView)layoutItem.findViewById(R.id.resultQuestion);
-        TextView goodResponse = (TextView)layoutItem.findViewById(R.id.resultGoodResponse);
-        TextView response = (TextView)layoutItem.findViewById(R.id.resultResponse);
+        ImageView image = (ImageView)layoutItem.findViewById(R.id.result2Image);
+        TextView goodResponse = (TextView)layoutItem.findViewById(R.id.result2GoodResponse);
+        TextView response = (TextView)layoutItem.findViewById(R.id.result2Response);
 
         //(3) : Renseignement des valeurs
-        question.setText(this.questionnaire.get(position).getQuestion());
+        int idImage = layoutItem.getResources().getIdentifier(this.questionnaire.get(position).getQuestion(), "drawable", context.getPackageName());
+        image.setImageResource(idImage);
         goodResponse.setText(this.questionnaire.get(position).getReponseV());
         response.setText((this.reponses.get(position) == null) ? this.context.getString(R.string.result_empty) : this.reponses.get(position));
 
